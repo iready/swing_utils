@@ -4,8 +4,10 @@ import org.zyq.swing_utils.console.StreamHandler;
 import org.zyq.swing_utils.console.SwingPrintStream;
 
 import javax.swing.*;
+import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 import java.io.PrintStream;
+import java.util.Enumeration;
 
 /**
  * Created by Yuquan Zou on 2016/1/5.
@@ -14,7 +16,17 @@ public class SwingUtils {
     public static void setConsole(JTextArea jTextArea, JScrollPane jScrollPane) {
         setConsole(jTextArea, jScrollPane, 100);
     }
-
+    public static void setFont(Font font){
+        FontUIResource fontRes = new FontUIResource(font);
+        for (Enumeration<Object> keys = UIManager.getDefaults().keys();
+             keys.hasMoreElements(); ) {
+            Object key = keys.nextElement();
+            Object value = UIManager.get(key);
+            if (value instanceof FontUIResource) {
+                UIManager.put(key, fontRes);
+            }
+        }
+    }
     public static void window_centered(JFrame frame) {
         frame.pack();
         Toolkit kit = Toolkit.getDefaultToolkit();

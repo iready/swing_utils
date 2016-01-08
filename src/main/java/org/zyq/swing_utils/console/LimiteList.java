@@ -10,13 +10,13 @@ public class LimiteList<E> extends ArrayList<E> {
 
     private int initialCapacity;
 
-    public int getInitialCapacity() {
-        return initialCapacity;
-    }
-
     public LimiteList(int initialCapacity) {
         super(initialCapacity);
         this.initialCapacity = initialCapacity;
+    }
+
+    public int getInitialCapacity() {
+        return initialCapacity;
     }
 
     public boolean add(E e) {
@@ -25,7 +25,7 @@ public class LimiteList<E> extends ArrayList<E> {
             if (this.size() + 1 > initialCapacity) {
                 this.remove(0);
             }
-            super.add( e);
+            super.add(e);
         }
         return result;
     }

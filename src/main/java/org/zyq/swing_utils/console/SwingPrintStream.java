@@ -11,14 +11,18 @@ public class SwingPrintStream extends PseudoPrintStream {
     LimiteList<String> strings;
     private JTextArea textArea;
     private JScrollPane jScrollPane;
-    private JScrollBar jsVB;
+    private JScrollBar scrollBar;
 
     public SwingPrintStream(JTextArea textArea, JScrollPane jScrollPane, Integer integer) {
         this.textArea = textArea;
         this.jScrollPane = jScrollPane;
-        this.jsVB = jScrollPane.getVerticalScrollBar();
+        this.scrollBar = jScrollPane.getVerticalScrollBar();
         strings = new LimiteList<String>(integer);
 
+    }
+
+    public void clean() {
+        strings.clear();
     }
 
     public void print(boolean b) {
@@ -62,7 +66,7 @@ public class SwingPrintStream extends PseudoPrintStream {
 
     private void text_append(Object obj) {
         boolean flag = false;
-        if (jsVB.getValue() == jsVB.getMaximum() - jsVB.getHeight()) {
+        if (scrollBar.getValue() == scrollBar.getMaximum() - scrollBar.getHeight()) {
             flag = true;
         }
         if (obj != null) {
@@ -78,7 +82,7 @@ public class SwingPrintStream extends PseudoPrintStream {
 
     private void text_append_enter(Object object) {
         boolean flag = false;
-        if (jsVB.getValue() == jsVB.getMaximum() - jsVB.getHeight()) {
+        if (scrollBar.getValue() == scrollBar.getMaximum() - scrollBar.getHeight()) {
             flag = true;
         }
         if (object != null) {

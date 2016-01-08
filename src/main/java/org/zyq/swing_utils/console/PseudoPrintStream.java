@@ -12,5 +12,4 @@ public class PseudoPrintStream extends PrintStream {
             }
         });
     }
-
 }

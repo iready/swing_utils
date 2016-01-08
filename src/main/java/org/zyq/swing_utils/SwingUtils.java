@@ -13,10 +13,18 @@ import java.util.Enumeration;
  * Created by Yuquan Zou on 2016/1/5.
  */
 public class SwingUtils {
+    private static SwingPrintStream swingPrintStream;
+
     public static void setConsole(JTextArea jTextArea, JScrollPane jScrollPane) {
         setConsole(jTextArea, jScrollPane, 100);
     }
-    public static void setFont(Font font){
+
+    public static void clearConsole(JTextArea jTextArea) {
+        swingPrintStream.clean();
+        jTextArea.setText("");
+    }
+
+    public static void setFont(Font font) {
         FontUIResource fontRes = new FontUIResource(font);
         for (Enumeration<Object> keys = UIManager.getDefaults().keys();
              keys.hasMoreElements(); ) {
@@ -27,6 +35,7 @@ public class SwingUtils {
             }
         }
     }
+
     public static void window_centered(JFrame frame) {
         frame.pack();
         Toolkit kit = Toolkit.getDefaultToolkit();
@@ -40,7 +49,8 @@ public class SwingUtils {
 
     public static void setConsole(JTextArea jTextArea, JScrollPane jscroll, Integer integer) {
         StreamHandler sHandler = new StreamHandler();
-        sHandler.addStream(new SwingPrintStream(jTextArea, jscroll, integer));
+        swingPrintStream = new SwingPrintStream(jTextArea, jscroll, integer);
+        sHandler.addStream(swingPrintStream);
         sHandler.addStream(System.out);
         sHandler.validate();
         PrintStream streamProxy = StreamHandler.proxyFor(sHandler);

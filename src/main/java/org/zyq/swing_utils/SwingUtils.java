@@ -1,5 +1,6 @@
 package org.zyq.swing_utils;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
 import org.zyq.swing_utils.console.StreamHandler;
 import org.zyq.swing_utils.console.SwingPrintStream;
 
@@ -15,13 +16,20 @@ import java.util.Enumeration;
 public class SwingUtils {
     private static SwingPrintStream swingPrintStream;
 
-    public static void setConsole(JTextArea jTextArea, JScrollPane jScrollPane) {
-        setConsole(jTextArea, jScrollPane, 100);
-    }
 
     public static void clearConsole(JTextArea jTextArea) {
-        swingPrintStream.clean();
         jTextArea.setText("");
+    }
+
+
+    public static void beatiful_up() {
+        try {
+            UIManager.put("RootPane.setupButtonVisible", false);
+            setFont(new Font("宋体", Font.PLAIN, 14));
+            BeautyEyeLNFHelper.launchBeautyEyeLNF();
+        } catch (Exception e) {
+            ;
+        }
     }
 
     public static void setFont(Font font) {
@@ -47,9 +55,9 @@ public class SwingUtils {
         frame.setLocation(x, y);
     }
 
-    public static void setConsole(JTextArea jTextArea, JScrollPane jscroll, Integer integer) {
+    public static void setConsole(JTextArea jTextArea, JScrollPane jscroll) {
         StreamHandler sHandler = new StreamHandler();
-        swingPrintStream = new SwingPrintStream(jTextArea, jscroll, integer);
+        swingPrintStream = new SwingPrintStream(jTextArea, jscroll);
         sHandler.addStream(swingPrintStream);
         sHandler.addStream(System.out);
         sHandler.validate();

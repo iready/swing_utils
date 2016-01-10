@@ -2,16 +2,16 @@ package org.zyq.swing_utils.console;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
 
 /**
  * Created by Yuquan Zou on 2016/1/2.
  */
-public class LimiteList<E> extends ArrayList<E> {
+public class LimiteList<E> extends LinkedList<E> {
 
     private int initialCapacity;
 
     public LimiteList(int initialCapacity) {
-        super(initialCapacity);
         this.initialCapacity = initialCapacity;
     }
 

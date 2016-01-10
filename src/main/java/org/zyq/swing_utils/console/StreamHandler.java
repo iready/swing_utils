@@ -7,6 +7,7 @@ import net.sf.cglib.proxy.MethodProxy;
 import java.io.PrintStream;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class StreamHandler implements MethodInterceptor {
@@ -75,16 +76,9 @@ public class StreamHandler implements MethodInterceptor {
                             Object[] args,
                             MethodProxy proxy)
             throws Throwable {
-        //如果是PseudoPrintStream 的close方法被调用，则调用PseudoPrintStream 的close
-        //方法关闭其匿名输出流
-        if ("close".equals(method.getName())) {
-            proxy.invokeSuper(object, args);
-        }
-        object.getClass();
-        for (int i = 0; i < streamList.size(); i++) {
-            PrintStream ps = streamList.get(i);
+        for (PrintStream ps :streamList) {
             object = method.invoke(ps, args);
         }
-        return object;//返回链表最后一个输出流调用的结果
+        return object;
     }
 }  

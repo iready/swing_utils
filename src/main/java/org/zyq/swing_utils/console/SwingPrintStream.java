@@ -7,12 +7,13 @@ import java.awt.*;
  * Created by Yuquan Zou on 2016/1/5.
  */
 public class SwingPrintStream extends PseudoPrintStream {
-    boolean whereEnd = true;
+    Boolean whereEnd = true;
     private JTextArea textArea;
     private JScrollPane jScrollPane;
     private JScrollBar scrollBar;
 
-    public SwingPrintStream(JTextArea textArea, JScrollPane jScrollPane) {
+    public SwingPrintStream(final JTextArea textArea, JScrollPane jScrollPane,Boolean end) {
+        this.whereEnd=end;
         this.textArea = textArea;
         this.jScrollPane = jScrollPane;
         this.scrollBar = jScrollPane.getVerticalScrollBar();
@@ -51,24 +52,16 @@ public class SwingPrintStream extends PseudoPrintStream {
         text_append(s);
     }
 
-    private void text_append(Object obj) {
-        isEnd();
+    private void text_append(final Object obj) {
         textArea.append(obj + "");
         if (whereEnd) {
             scrollBar.setValue(scrollBar.getMaximum());
         }
+
     }
 
-    private void isEnd() {
-        if (scrollBar.getValue() != scrollBar.getMaximum() - scrollBar.getHeight() - 15) {
-            whereEnd = false;
-        } else {
-            whereEnd = true;
-        }
-    }
 
-    private void text_append_enter(Object object) {
-        isEnd();
+    private void text_append_enter(final Object object) {
         textArea.append(textArea.getText().length() == 0 ? object + "" : "\n" + object);
         if (whereEnd) {
             scrollBar.setValue(scrollBar.getMaximum());

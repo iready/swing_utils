@@ -55,9 +55,9 @@ public class SwingUtils {
         frame.setLocation(x, y);
     }
 
-    public static void setConsole(JTextArea jTextArea, JScrollPane jscroll) {
+    public static void setConsole(JTextArea jTextArea, JScrollPane jscroll,Boolean isend) {
         StreamHandler sHandler = new StreamHandler();
-        swingPrintStream = new SwingPrintStream(jTextArea, jscroll);
+        swingPrintStream = new SwingPrintStream(jTextArea, jscroll,isend);
         sHandler.addStream(swingPrintStream);
         sHandler.addStream(System.out);
         sHandler.validate();

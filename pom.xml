@@ -6,9 +6,26 @@
     <groupId>org.zyq</groupId>
     <artifactId>swing_utils</artifactId>
     <version>1.0</version>
+    <repositories>
+        <repository>
+            <id>DESKTOP-50674H5</id>
+            <name>DESKTOP-50674H5-releases</name>
+            <url>http://147.1.7.125:8081/artifactory/zyq</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>artifactory</id>
+            <name>your local artifactory</name>
+            <url>http://147.1.7.125:8081/artifactory/plugins-releases</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
     <dependencies>
         <dependency>
-            <groupId>org.lby</groupId>
+            <groupId>beautyeye</groupId>
             <artifactId>beautyeye</artifactId>
             <version>3.0</version>
         </dependency>

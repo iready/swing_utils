@@ -4,6 +4,7 @@ import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.io.PrintStream;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
